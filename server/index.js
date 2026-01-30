@@ -17,3 +17,5 @@ mongoose.connect(process.env.MONGO_URI)
     });
   })
   .catch(() => console.log("DB error"));
+const quizRoutes = require("./routes/quizRoutes");
+app.use("/api/quizzes", quizRoutes);
