@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import api from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
 
 export default function QuizList() {
-  const [quizzes, setQuizzes] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    api.get("/quizzes").then((res) => setQuizzes(res.data));
-  }, []);
+  const quizzes = [
+    { _id: "1", title: "JavaScript Basics" },
+    { _id: "2", title: "React Fundamentals" },
+  ];
 
   return (
-    <div>
+    <>
       <h2>Available Quizzes</h2>
-      {quizzes.map((q) => (
+      {quizzes.map(q => (
         <div key={q._id}>
-          <span>{q.title}</span>
-          <button onClick={() => navigate(`/quiz/${q._id}`)}>Start</button>
+          <b>{q.title}</b>
+          <button onClick={() => navigate(`/quiz/${q._id}`)}>
+            Start Quiz
+          </button>
         </div>
       ))}
-    </div>
+    </>
   );
 }
